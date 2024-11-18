@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Detail.css">
+    <script>
+        function message1(){
+            window.location.href = '/web/unjoinEvent/{{event.id}}'
+            alert("Ya te hemos borrado del evento. Ahora puedes apuntarte a otro :)");
+        }
+        function message2() {
+            window.location.href = '/web/joinEvent/{{event.id}}'
+            alert("¡Te hemos apuntado al evento! Recuerda que no podrás apuntarte a otro porque ya estás asociado a este");
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Detalles del evento</h2>
+        <div>
+            <p>Nombre: {{event.name}}</p>
+            <p>Descripción: {{event.description}}</p>
+            <p>Fecha Evento: {{event.dateTime}}</p>
+        </div>
+    </div>
+    <div class="options">
+        <a href="/web/editEvent/{{event.id}}" class="button">Editar Evento</a>
+        <a href="/web/deleteEvent/{{event.id}}" onclick="return confirm('¿Estás seguro de querer eliminar este evento?');" class="button">Eliminar Evento</a>
+        <a href="/web/userList/{{event.id}}" class="button">Ver lista asistentes</a>
+        <a href="/web/listEventLocation/{{event.id}}" class="button">Ver localizaciones</a>
+        {{#loggedUser.event}}
+            <a href="#" onclick="message1();" class="button">Quitarme de mi evento asociado</a>
+        {{/loggedUser.event}}
+        {{^loggedUser.event}}
+            <a href="/web/eventDetails/{{event.id}}" onclick="message2();" class="button">Unirme a este evento</a>
+        {{/loggedUser.event}}
+        <a href="/web/listEvent" class="button">Volver atrás</a>
+    </div>
+</body>
+</html>

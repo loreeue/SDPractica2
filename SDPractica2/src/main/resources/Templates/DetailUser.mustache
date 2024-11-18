@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Detail.css">
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container-user">
+        <div class="left-user">
+            <h2>Perfil de: {{user.username}}</h2>
+            <div class="futureEvents">
+                <h2> Mi evento asociado:</h2>
+                    {{#event}}
+                        <div class="event-item-user">
+                            <a href="/web/eventDetails/{{id}}">
+                                <img src="{{image}}">
+                            </a>
+                            <p>
+                                <a href="/web/eventDetails/{{id}}" class="button">{{name}}</a>
+                            </p>
+                        </div>
+                    {{/event}}
+                    {{^event}}
+                        <p> No tienes ningún evento asociado aún. </p>
+                    {{/event}}
+            </div>
+        </div>
+        <div class="details-user">
+            <p><strong>Nombre de usuario:</strong> {{user.username}}</p>
+            <p><strong>Email:</strong> {{user.email}}</p>
+            <p><strong>Nombre:</strong> {{user.firstName}}</p>
+            <p><strong>Apellidos:</strong> {{user.lastName}}</p>
+            <p><strong>Fecha de nacimiento:</strong> {{user.birthdate}}</p>
+            <p><strong>Género:</strong> {{user.gender}}</p>
+        </div>
+    </div>
+    <div class="options">
+        <a href="/web/editUser/{{user.id}}" class="button">Editar Usuario</a>
+        <a href="/web/deleteUser/{{user.id}}" onclick="return confirm('¿Estás seguro de querer eliminar este perfil de usuario?');" class="button">Eliminar usuario</a>
+        {{#booleano}}
+            <a href="/web/listEvent" class="button">Quiero ir a un evento</a>
+        {{/booleano}}
+        <a href="/web/loggedUser/{{loggedUser.id}}" class="button">Volver atrás</a>
+    </div>
+</body>
+</html>

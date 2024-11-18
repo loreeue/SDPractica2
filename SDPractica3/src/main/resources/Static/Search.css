@@ -1,0 +1,17 @@
+.search {
+    position: relative;
+    left: -17%;
+    bottom: -10%;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.search input {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: ghostwhite;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Add.css">
+    <script>
+        function validateForm() {
+            var username = document.forms["addUser"]["username"].value;
+            var email = document.forms["addUser"]["email"].value;
+            var password = document.forms["addUser"]["password"].value;
+            var firstName = document.forms["addUser"]["firstName"].value;
+            var lastName = document.forms["addUser"]["lastName"].value;
+            var birthdate = document.forms["addUser"]["birthdate"].value;
+            var gender = document.forms["addUser"]["gender"].value;
+            var selectedAvatar = document.forms["addUser"]["selectedAvatar"].value;
+            if (username === "" || email === "" || password === "" || firstName === "" || lastName === "" || birthdate ==="" || gender === "" || selectedAvatar === "") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+            var selectedDate = new Date(birthdate);
+            var currentDate = new Date();
+            if (selectedDate > currentDate) {
+                alert("¡Un momento... Vas más rápido que el Halcón Milenario! La fecha de nacimiento no puede ser en el futuro. Por favor, elige una fecha válida.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web" class="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    {{#success}}
+        <p>Usuario creado con éxito.</p>
+    {{/success}}
+    <div class="container-add">
+        <form class="form-add" name="addUser" action="/web/addUser" method="post" accept-charset="UTF-8" onsubmit="return validateForm()">
+            <div class="details">
+                <h2>Añadir nuevo usuario</h2>
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required minlength="6"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email"><br><br>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required minlength="6"><br><br>
+
+                <label for="firstName">Nombre:</label>
+                <input type="text" id="firstName" name="firstName"><br><br>
+
+                <label for="lastName">Apellidos:</label>
+                <input type="text" id="lastName" name="lastName"><br><br>
+
+                <label for="birthdate">Fecha de nacimiento:</label>
+                <input type="date" id="birthdate" name="birthdate"><br><br>
+
+                <label for="gender">Género:</label>
+                    <select name="gender" id="gender">
+                        <option value ="" disabled selected>Selecciona</option>
+                        <option value ="Femenino">Femenino</option>
+                        <option value ="Masculino">Masculino</option>
+                        <option value ="Prefiero no decirlo">Prefiero no decirlo</option>
+                    </select>
+                <br><br>
+            </div>
+            <div class="avatar">
+                <label for="selectedAvatar">Seleccione un avatar:</label><br>
+                <input type="radio" name="selectedAvatar" value="/avatar-hombre.png">
+                <label for="selectedAvatar"><img src="/images/avatar-hombre.png" id="selectedAvatar"></label><br>
+
+                <input type="radio" name="selectedAvatar" value="/avatar-mujer.png">
+                <label for="selectedAvatar"><img src="/images/avatar-mujer.png" id="selectedAvatar"></label><br>
+
+                <input type="radio" name="selectedAvatar" value="/avatar-normal.png">
+                <label for="selectedAvatar"><img src="/images/avatar-normal.png" id="selectedAvatar"></label><br><br>
+
+                <input type="submit" class="button" value="Crear Usuario">
+            </div>
+        </form>
+    </div>
+    <div class="cancel">
+        <a href="/web" class="button">Cancelar</a>
+    </div>
+</body>
+</html>

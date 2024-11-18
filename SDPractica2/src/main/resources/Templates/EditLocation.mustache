@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Edit.css">
+    <script>
+        function validateForm() {
+            var selectedEvents = document.forms["editLocation"]["selectedEvents"];
+            var atLeastOneSelected = false;
+            // Check if at least one event is selected
+            var i = 0;
+            while (i < selectedEvents.length && !atLeastOneSelected) {
+                if (selectedEvents[i].checked) {
+                    atLeastOneSelected = true;
+                }
+                i++;
+            }
+            if (!atLeastOneSelected) {
+                var confirmResult = window.confirm("¿Seguro que no quieres seleccionar ningún evento?");
+                return confirmResult;
+            }
+
+            var name = document.forms["editLocation"]["name"].value;
+            var address = document.forms["editLocation"]["address"].value;
+            var capacity = document.forms["editLocation"]["capacity"].value;
+            var type = document.forms["editLocation"]["type"].value;
+            var accessibility = document.forms["editLocation"]["accessibility"].value;
+            var city = document.forms["editLocation"]["city"].value;
+            var country = document.forms["editLocation"]["country"].value;
+            var image = document.forms["editLocation"]["image"].value;
+            if (name === "" || address === "" || city === "" || country === "" || image === "" || capacity === "" || type === "" || accessibility ==="") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Editar Localizacion</h2>
+        {{#success}}
+            <p>Localizacion editada con éxito.</p>
+        {{/success}}
+        <form name="editLocation" action="/web/editLocation" method="post" class="edit-form" accept-charset="UTF-8" onsubmit="return validateForm()">
+            <input type="hidden" name="id" value="{{location.id}}">
+
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{location.name}}"><br><br>
+
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address" value="{{location.address}}"><br><br>
+
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" name="city" value="{{location.city}}"><br><br>
+
+            <label for="country">País:</label>
+            <input type="text" id="country" name="country" value="{{location.country}}"><br><br>
+
+            <label for="image">URL Imagen Localización:</label>
+            <input type="text" id="image" name="image" value="{{location.image}}"><br><br>
+
+            <label for="capacity">Capacidad del recinto:</label>
+            <input type="int" id="capacity" name="capacity" value="{{location.capacity}}"><br><br>
+
+            <label for="type">Tipo de recinto:</label>
+            <select name="type" id="type" value="{{location.type}}">
+                <option value ="" selected disabled >Selecciona</option>
+                <option value ="Sala pequeña">Sala pequeña</option>
+                <option value ="Sala mediana">Sala mediana</option>
+                <option value ="Sala grande">Sala grande</option>
+                <option value ="Estadio">Estadio</option>
+                <option value ="Parque">Parque</option>
+                <option value ="Centro de convenciones">Centro de convenciones</option>
+                <option value ="Otros">Otros</option>
+            </select><br><br>
+
+            <label for="accessibility">Accesible:</label>
+            <select name="accessibility" id="accessibility" value="{{location.accessibility}}">
+                <option value ="" disabled selected>Selecciona</option>
+                <option value ="Sí">Sí</option>
+                <option value ="No">No</option>
+            </select><br><br>
+
+            <label>¿Qué eventos van a estar en esta localización?</label><br>
+            {{#event}}
+                <div class = "checkboxes">
+                    <input class = "edit-location-input" type="checkbox" name="selectedEvents" value="{{id}}" id="{{id}}">
+                    <label for="{{id}}">{{name}}</label><br>
+                </div>
+            {{/event}}<br><br>
+            <br>
+
+            <input type="submit" value="Aceptar">
+        </form>
+    </div>
+    <div class="options">
+        <a href="/web/locationDetails/{{location.id}}" class="button">Cancelar</a>
+    </div>
+</body>
+</html>

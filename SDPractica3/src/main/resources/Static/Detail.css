@@ -1,0 +1,112 @@
+body {
+    background-image: url("images/singer.jpg");
+}
+
+.container{
+    opacity: 0.9;
+    margin: 50px auto;
+    width: 50%;
+    text-align: left;
+    min-height: 50px;
+    background-color: ghostwhite;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.location-image{
+    display:flex;
+    margin-left: 50px;
+}
+
+.details {
+    margin-left: 100px;
+}
+
+.futureEvents{
+    background-color: lightblue;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    min-width: 300px;
+}
+
+.details-user{
+    margin-left: 150px;
+    white-space: nowrap;
+}
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.options a {
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.event-item {
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    min-height: 300px;
+    flex: 1;
+}
+
+.event-item img {
+    margin-bottom: 10px;
+    width: 245px;
+    height: 255px;
+    object-fit: cover;
+}
+
+.event-item-user{
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    min-height: 300px;
+    flex: 1;
+}
+
+.event-item-user img {
+    margin-bottom: 10px;
+    width: 205px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.container-user{
+    opacity: 0.9;
+    margin: 20px auto;
+    width: 70%;
+    text-align: left;
+    min-height: 50px;
+    background-color: ghostwhite;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+.left-user{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}

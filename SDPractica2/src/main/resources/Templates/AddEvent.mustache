@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Add.css">
+    <script>
+        function validateForm() {
+            var selectedLocations = document.forms["addEvent"]["selectedLocations"];
+            var atLeastOneSelected = false;
+            // Check if at least one location is selected
+            var i = 0;
+            while (i < selectedLocations.length && !atLeastOneSelected) {
+                if (selectedLocations[i].checked) {
+                    atLeastOneSelected = true;
+                }
+                i++;
+            }
+            if (!atLeastOneSelected) {
+                alert("Debes seleccionar al menos una localización");
+                return false;
+            }
+
+            var name = document.forms["addEvent"]["name"].value;
+            var description = document.forms["addEvent"]["description"].value;
+            var dateTime = document.forms["addEvent"]["dateTime"].value;
+            var image = document.forms["addEvent"]["image"].value;
+            if (name === "" || description === "" || dateTime === "" || image === "") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+            var selectedDate = new Date(dateTime);
+            var currentDate = new Date();
+            if (selectedDate < currentDate) {
+                alert("¡Espera un momento! No podemos retroceder en el DeLorean para elegir esa fecha. Elige una fecha válida.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    {{#success}}
+        <p>Evento añadido con éxito.</p>
+    {{/success}}
+    <div class="container">
+        <form name="addEvent" action="/web/addEvent" method="post" enctype="multipart/form-data" accept-charset="UTF-8" onsubmit="return validateForm()">
+            <h2>Añadir nuevo evento</h2>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="description"><br><br>
+
+            <label for="dateTime">Fecha Evento:</label>
+            <input type="datetime-local" id="dateTime" name="dateTime"><br><br>
+
+            <label for="image">URL Imagen Evento:</label><br><br>
+            <input type="text" id="image" name="image"><br><br>
+
+            <label>¿En qué localizaciones va a estar este evento?</label><br>
+            {{#location}}
+                <input type="checkbox" name="selectedLocations" value="{{id}}" id="{{name}}">
+                <label for="{{name}}">{{name}}</label><br>
+            {{/location}}<br><br>
+
+            <input type="submit" class="button" value="Crear Evento">
+        </form>
+    </div>
+    <div class="cancel">
+        <a href="/web/listEvent" class="button">Cancelar</a>
+    </div>
+</body>
+</html>

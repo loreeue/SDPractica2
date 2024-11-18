@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/LogIn.css">
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+		function validateForm() {
+            var username = document.forms["logIn"]["username"].value;
+            var password = document.forms["logIn"]["password"].value;
+            if (username === "" ||password === "") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class = "all">
+        <div class="headertop">
+            <header>
+                <h1><a href="/web" class="home">TicketSphere</a></h1>
+            </header>
+        </div>
+        {{#success}}
+            <p>Se ha iniciado sesión correctamente</p>
+        {{/success}}
+        <div class="container">
+            <form name="logIn" action="/web" method="post" class="login-form" onsubmit="return validateForm()">
+                <h2>Iniciar sesión</h2>
+                <div class="input-group">
+                    <label for="username" class="user">Usuario</label>
+                    <input type="text" id="username" name="username" required minlength="6" placeholder="usuario">
+
+                    <label for="password" class="pass">Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required minlength="6" placeholder="contraseña">
+                        <span class="show-password" onclick="togglePasswordVisibility()"></span>
+                    </div>
+                <button type="submit" class="button">Iniciar Sesión</button>
+                </div>
+            </form>
+            {{#error}}
+                <script>
+                    alert("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
+                </script>
+            {{/error}}
+        </div>
+        <div class="options">
+            <a href="web/addUser" class="button">¡Registrarme!</a>
+        </div>
+        <div class="footer">
+            <p>Email de contacto: <a href="mailto:info@ticketsphere.com">info@ticketsphere.com</a></p>
+            <p>Created by: Silvia & Loreto</p>
+            <div class="social-media">
+                <a href="http://www.instagram.com/ticketsphere"><img src="/images/instagram.png" alt="Instagram"></a>
+                <a href="http://www.twitter.com/ticketsphere"><img src="/images/twitter.png" alt="Twitter"></a>
+                <a href="http://www.facebook.com/ticketsphere"><img src="/images/facebook2.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

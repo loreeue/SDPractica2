@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Edit.css">
+    <script>
+        function validateForm() {
+            var selectedLocations = document.forms["editEvent"]["selectedLocations"];
+            var atLeastOneSelected = false;
+            // Check if at least one location is selected
+            var i = 0;
+
+            while (i < selectedLocations.length && !atLeastOneSelected) {
+                if (selectedLocations[i].checked) {
+                    atLeastOneSelected = true;
+                }
+                i++;
+            }
+            if (!atLeastOneSelected) {
+                alert("Debes seleccionar al menos una localización");
+                return false;
+            }
+
+            var name = document.forms["editEvent"]["name"].value;
+            var description = document.forms["editEvent"]["description"].value;
+            var dateTime = document.forms["editEvent"]["dateTime"].value;
+            var url = document.forms["editEvent"]["url"].value;
+
+            if (name === "" || description === "" || dateTime === "" || url === "") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+
+            var selectedDate = new Date(dateTime);
+            var currentDate = new Date();
+            if (selectedDate < currentDate) {
+                alert("¡Espera un momento! No podemos retroceder en el DeLorean para elegir esa fecha. Elige una fecha válida.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Editar Evento</h2>
+        {{#success}}
+            <p>Evento editado con éxito.</p>
+        {{/success}}
+        <form name="editEvent" action="/web/editEvent" method="post" class="edit-form" accept-charset="UTF-8" onsubmit="return validateForm()">
+            <input type="hidden" name="id" value="{{event.id}}">
+
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{event.name}}"><br><br>
+
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="description" value="{{event.description}}"><br><br>
+
+            <label for="dateTime">Fecha Evento:</label>
+            <input type="datetime-local" id="dateTime" name="dateTime" value="{{event.dateTime}}"><br><br>
+
+            <label for="image">URL Imagen Evento:</label>
+            <input type="text" id="image" name="image" value="{{event.image}}"><br><br>
+
+            <label>¿En qué localizaciones va a estar este evento?</label><br>
+            {{#location}}
+                <div class = "checkboxes">
+                    <input class = "edit-location-input" type="checkbox" name="selectedLocations" value="{{id}}" id="{{id}}">
+                    <label for="{{id}}">{{name}}</label><br>
+                </div>
+            {{/location}}<br><br>
+            <br>
+
+            <input type="submit" value="Aceptar">
+        </form>
+    </div>
+    <div class="options">
+        <a href="/web/eventDetails/{{event.id}}" class="button">Cancelar</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Add.css">
+    <script>
+        function validateForm() {
+            var selectedEvents = document.forms["addLocation"]["selectedEvents"];
+            var atLeastOneSelected = false;
+            // Check if at least one event is selected
+            var i = 0;
+            while (i < selectedEvents.length && !atLeastOneSelected) {
+                if (selectedEvents[i].checked) {
+                    atLeastOneSelected = true;
+                }
+                i++;
+            }
+            if (!atLeastOneSelected) {
+                return window.confirm("¿Seguro que no quieres seleccionar ningún evento?");
+            }
+
+            var name = document.forms["addLocation"]["name"].value;
+            var address = document.forms["addLocation"]["address"].value;
+            var capacity = document.forms["addLocation"]["capacity"].value;
+            var type = document.forms["addLocation"]["type"].value;
+            var accessibility = document.forms["addLocation"]["accessibility"].value;
+            var city = document.forms["addLocation"]["city"].value;
+            var country = document.forms["addLocation"]["country"].value;
+            var image = document.forms["addLocation"]["image"].value;
+            if (name === "" || address === "" || city === "" || country === "" || image === "" || capacity === "" || type === "" || accessibility ==="") {
+                alert("Todos los campos son obligatorios.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    {{#success}}
+        <p>Localizacion añadida con éxito.</p>
+    {{/success}}
+    <div class="container">
+        <form name="addLocation" action="/web/addLocation" method="post" accept-charset="UTF-8" onsubmit="return validateForm()">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address"><br><br>
+
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" name="city"><br><br>
+
+            <label for="country">País:</label>
+            <input type="text" id="country" name="country"><br><br>
+
+            <label for="capacity">Capacidad del recinto:</label>
+            <input type="int" id="capacity" name="capacity"><br><br>
+
+            <label for="type">Tipo de recinto:</label>
+            <select name="type" id="type">
+                <option value ="" disabled selected>Selecciona</option>
+                <option value ="Sala pequeña">Sala pequeña</option>
+                <option value ="Sala mediana">Sala mediana</option>
+                <option value ="Sala grande">Sala grande</option>
+                <option value ="Estadio">Estadio</option>
+                <option value ="Parque">Parque</option>
+                <option value ="Centro de convenciones">Centro de convenciones</option>
+                <option value ="Otros">Otros</option>
+            </select><br><br>
+
+            <label for="accessibility">Accesible:</label>
+            <select name="accessibility" id="accessibility">
+                <option value ="" disabled selected>Selecciona</option>
+                <option value ="Sí">Sí</option>
+                <option value ="No">No</option>
+            </select><br><br>
+
+            <label for="image">URL Imagen Localización:</label>
+            <input type="text" id="image" name="image"><br><br>
+
+            <label>¿Qué eventos van a estar en esta localización?</label><br>
+            {{#event}}
+                <input type="checkbox" name="selectedEvents" value="{{id}}" id="{{id}}">
+                <label for="{{id}}">{{name}}</label><br>
+            {{/event}}<br><br>
+
+            <input type="submit" class="button" value="Crear Localizacion">
+        </form>
+    </div>
+    <div class="cancel">
+        <a href="/web/listLocation" class="button">Cancelar</a>
+    </div>
+</body>
+</html>

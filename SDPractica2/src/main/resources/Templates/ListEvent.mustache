@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/List.css">
+    <link rel="stylesheet" href="/Search.css">
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+            <form class="search" method="post" action="/web/searchEvent">
+                <input type="text" id="search" name="search" placeholder="Busca por evento..." onkeyup="return search()">
+            </form>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Eventos</h2>
+        <div class="event-container">
+            <div class="event-scroll">
+                {{#event}}
+                    <div class="event-item">
+                        <a href="/web/eventDetails/{{id}}">
+                            <img src="{{image}}">
+                        </a>
+                        <p>
+                            <a href="/web/eventDetails/{{id}}" class="button">{{name}}</a>
+                        </p>
+                    </div>
+                {{/event}}
+            </div>
+        </div>
+    </div>
+    <div class="options">
+        <a href="/web/addEvent" class="button">Agregar Evento Nuevo</a>
+        <a href="/web/loggedUser/{{loggedUser.id}}" class="button">Volver atrás</a>
+    </div>
+</body>
+</html>

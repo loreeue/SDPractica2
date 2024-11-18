@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/List.css">
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Usuarios</h2>
+        <div class="event-container">
+            <div class="event-scroll">
+                {{#users}}
+                    <div class="event-item">
+                        <a href="/web/userDetails/{{id}}">
+                            <img src="/images/{{selectedAvatar}}">
+                        </a>
+                        <p>
+                            Nombre de usuario: {{username}}<br>
+                            E-mail: {{email}}<br>
+                            Nombre: {{firstName}}<br>
+                            Apellidos: {{lastName}}<br>
+                        </p>
+                    </div>
+                {{/users}}
+            </div>
+        </div>
+    </div>
+    <div class="options">
+        <a href="/web/loggedUser/{{loggedUser.id}}" class="button">Volver atrás</a>
+    </div>
+</body>
+</html>

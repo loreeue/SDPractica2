@@ -1,0 +1,103 @@
+body {
+    background-image: url("images/guitar.jpg");
+}
+
+.container {
+    margin: 50px auto;
+    width: 40%;
+    text-align: center;
+    background-color: ghostwhite;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    opacity: 0.9;
+    min-height: 50px;
+
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.user, .pass, .password-container {
+    display: block;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+}
+
+.input-group, .password-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show-password {
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-70%);
+    cursor: pointer;
+    background-image: url("images/ojo.png");
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}
+
+.password-container {
+    position: relative;
+    width:100%;
+}
+
+.container h2 {
+    color: #007bff;
+}
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.options a { /* a -> for links */
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+.all{
+    min-height: 100vh;
+    position: relative;
+    flex: 1;
+}

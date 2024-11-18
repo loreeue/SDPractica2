@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/Detail.css">
+</head>
+<body>
+    <div class="headertop">
+        <header>
+            <h1><a href="/web/loggedUser/{{loggedUser.id}}" class ="home">TicketSphere</a></h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Detalles de la localización:</h2>
+        <div class="location-image">
+            <img src="{{location.image}}" width="300" height="300">
+            <div class="details">
+                <p>Nombre: {{location.name}}</p>
+                <p>Dirección: {{location.address}}</p>
+                <p>Capacidad del recinto: {{location.capacity}}</p>
+                <p>Tipo de recinto: {{location.type}}</p>
+                <p>Accesible: {{location.accessibility}}</p>
+                <p>Ciudad: {{location.city}}</p>
+                <p>Pais: {{location.country}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="options">
+        <a href="/web/editLocation/{{location.id}}" class="button">Editar Localización</a>
+        <a href="/web/deleteLocation/{{location.id}}" onclick="return confirm('¿Estás seguro de querer eliminar esta localizacion?');" class="button">Eliminar Localización</a>
+        <a href="/web/listLocationsEvents/{{location.id}}" class="button">Ver eventos</a>
+        <a href="/web/listLocation" class="button">Volver atrás</a>
+    </div>
+</body>
+</html>

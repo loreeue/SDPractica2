@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicketSphere</title>
+    <link rel="stylesheet" href="/HeaderAndGeneral.css">
+    <link rel="stylesheet" href="/MainScreen.css">
+    <link rel="stylesheet" href="/Search.css">
+    <script>
+        function search() {
+            var search = document.forms["search"]["search"].value;
+            if (search === "") {
+                alert("Debes insertar un criterio de búsqueda");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="headertop">
+            <header>
+                <h1><a href="/web/loggedUser/{{loggedUser.id}}" class="home">TicketSphere</a></h1>
+                <form class="search" method="post" action="/web/searchLocation">
+                    <input type="text" id="search" name="search" placeholder="Busca por localización..." onkeyup="return search()">
+                </form>
+                <div class="options">
+                    <a href="/web/userList" class="button">Usuarios registrados</a>
+                    <a href="/web" onclick="return confirm('¿Estás seguro de querer cerrar sesión?');" class="button">Cerrar sesión</a>
+                    <a href="/web/userDetails/{{loggedUser.id}}" class="button">Mi perfil</a>
+                </div>
+            </header>
+        </div>
+        <div class="container">
+            <h2>¡BIENVENIDO!</h2>
+            <div class="options-medium">
+                <h3>Elige una opción</h3>
+                <a href="/web/listEvent">Ver listado de eventos</a><br>
+                <a href="/web/listLocation">Ver listado de localizaciones</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Email de contacto: <a href="mailto:info@ticketsphere.com">info@ticketsphere.com</a></p>
+        <p>Created by: Silvia & Loreto</p>
+        <div class="social-media">
+            <a href="http://www.instagram.com/ticketsphere"><img src="/images/instagram.png" alt="Instagram"></a>
+            <a href="http://www.twitter.com/ticketsphere"><img src="/images/twitter.png" alt="Twitter"></a>
+            <a href="http://www.facebook.com/ticketsphere"><img src="/images/facebook2.png" alt="Facebook"></a>
+        </div>
+    </div>
+</body>
+</html>

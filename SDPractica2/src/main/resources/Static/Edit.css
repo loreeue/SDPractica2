@@ -1,0 +1,58 @@
+body {
+    background-image: url("images/piano.jpg");
+}
+
+.container{
+    margin: 50px auto;
+    width: 50%;
+    text-align: left;
+    min-height: 50px;
+    background-color: ghostwhite;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    opacity: 0.9;
+
+}
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.options a {
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+#selectedAvatar {
+    width: 65px;
+    height: 65px;
+}
+
+.edit-form{
+    align-items: flex-start;
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+input:not(.edit-location-input) {
+    padding: 10px;
+    margin-bottom: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+}
+
+.checkboxes{
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
